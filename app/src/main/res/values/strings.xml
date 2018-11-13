@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">OneForAllApk</string>
+    <string name="title">App名</string>
+    <string name="app_icon">App图标</string>
+    <string name="version_">版本：</string>
+    <string name="use_java">用的哪个java文件：</string>
+    <string name="res_change">资源图片不同更换：</string>
+    <string name="assets_res_change">assets资源变更：</string>
+    <string name="net_url_change">固定网络地址变更：</string>
+    <string name="qq_id">QQ id:</string>
+    <string name="three_sdk_config">《第三方配置》</string>
+    <string name="wx_id">微信 id:</string>
+</resources>

@@ -1,0 +1,119 @@
+apply plugin: 'com.android.application'
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd-HH.mm", TimeZone.getTimeZone("GMT+8"))
+}
+
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.xujiaji.oneforallapk"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        oneRelease {
+            storeFile file("../key/one.jks")
+            storePassword "123456"
+            keyAlias "oneforallapk"
+            keyPassword "123456"
+        }
+
+        twoRelease {
+            storeFile file("../key/two.jks")
+            storePassword "123456"
+            keyAlias "oneforallapk"
+            keyPassword "123456"
+        }
+
+        threeRelease {
+            storeFile file("../key/three.jks")
+            storePassword "123456"
+            keyAlias "oneforallapk"
+            keyPassword "123456"
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        oneApk {
+            applicationId "com.xujiaji.oneforallapk_one"
+            versionCode 1
+            versionName "1.0.1"
+            signingConfig signingConfigs.oneRelease
+
+            String qq_id = '"one123456789"'
+            buildConfigField "String", "QQ_ID", qq_id // qq appId
+            buildConfigField "String", "WX_ID", '"one--abcdefghijklmnopqrst"' // 微信 appId
+            buildConfigField "String", "LOGOURL", '"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2374702328,3613689769&fm=27&gp=0.jpg"'
+        }
+
+        twoApk {
+            applicationId "com.xujiaji.oneforallapk_two"
+            versionCode 2
+            versionName "1.0.2"
+            signingConfig signingConfigs.twoRelease
+
+            String qq_id = '"two123456789"'
+            buildConfigField "String", "QQ_ID", qq_id // qq appId
+            buildConfigField "String", "WX_ID", '"two--abcdefghijklmnopqrst"' // 微信 appId
+            buildConfigField "String", "LOGOURL", '"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2072087045,227865347&fm=27&gp=0.jpg"'
+        }
+
+        threeApk {
+            applicationId "com.xujiaji.oneforallapk_three"
+            versionCode 3
+            versionName "1.0.3"
+            signingConfig signingConfigs.threeRelease
+
+            String qq_id = '"three123456789"'
+            buildConfigField "String", "QQ_ID", qq_id // qq appId
+            buildConfigField "String", "WX_ID", '"three--abcdefghijklmnopqrst"' // 微信 appId
+            buildConfigField "String", "LOGOURL", '"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3117066670,3759738700&fm=27&gp=0.jpg"'
+        }
+    }
+
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = "${variant.productFlavors[0].name}-v${variant.productFlavors[0].versionName}-${releaseTime()}.apk"
+            }
+    }
+
+    buildTypes {
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            signingConfig null
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            signingConfig null
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+}
