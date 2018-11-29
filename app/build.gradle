@@ -80,7 +80,19 @@ android {
     applicationVariants.all {
         variant ->
             variant.outputs.all {
-                outputFileName = "${variant.productFlavors[0].name}-v${variant.productFlavors[0].versionName}-${releaseTime()}.apk"
+                def chineseName = ""
+                switch(variant.productFlavors[0].name) {
+                    case "oneApk":
+                        chineseName = "第一个APK"
+                        break
+                    case "twoApk":
+                        chineseName = "第二个APK"
+                        break
+                    case "threeApk":
+                        chineseName = "第三个APK"
+                        break
+                }
+                outputFileName = "${chineseName}-${variant.productFlavors[0].name}-v${variant.productFlavors[0].versionName}-${releaseTime()}.apk"
             }
     }
 
@@ -116,4 +128,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation project(path: ':library')
 }

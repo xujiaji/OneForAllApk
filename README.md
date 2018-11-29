@@ -28,3 +28,31 @@
 <img style="margin-left:0px;" src="https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/blog/one-for-more/20181113182534.png" width="33%" >
 <img style="margin-left:0px;" src="https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/blog/one-for-more/20181113182556.png" width="33%" >
 </div>
+
+
+## 后期更新的配置
+#### library中也需要动态改变资源配置，并且打包如何加上中文名 [#3](https://github.com/xujiaji/OneForAllApk/issues/3)
+1. 如需要中文名，只需要switch语句为对应渠道添加上即可，`outputFileName`拼接的结果就是最终的文件名
+``` groovy
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                def chineseName = ""
+                switch(variant.productFlavors[0].name) {
+                    case "oneApk":
+                        chineseName = "第一个APK"
+                        break
+                    case "twoApk":
+                        chineseName = "第二个APK"
+                        break
+                    case "threeApk":
+                        chineseName = "第三个APK"
+                        break
+                }
+                outputFileName = "${chineseName}-${variant.productFlavors[0].name}-v${variant.productFlavors[0].versionName}-${releaseTime()}.apk"
+            }
+    }
+```
+2. 下图展示了对library的配置，只需在library也添加上对应的渠道和文件夹即可（和主模块同理）。需注意如果使用library的`BuildConfig`注意包名，如本例子中的`MainActivity`使用了全路径`com.xujiaji.library.BuildConfig`
+<img  src="https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/blog/one-for-more/20181129192318.png" width="33%" height="auto">
+

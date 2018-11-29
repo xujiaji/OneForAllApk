@@ -123,6 +123,40 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/wx_id"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/holo_red_light"
+            android:text="@string/library_module_change"/>
+
+        <TextView
+            android:id="@+id/tvLibraryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/url_text_change"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/res_change"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/librarytest"/>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </ScrollView>
