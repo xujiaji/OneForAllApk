@@ -12,4 +12,5 @@
     <string name="wx_id">微信 id:</string>
     <string name="library_module_change">下面是Library module里面的变更</string>
     <string name="url_text_change">url字符变更：</string>
+    <string name="shareduserid_info">SharedUserId变更：</string>
 </resources>

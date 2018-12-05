@@ -1,6 +1,9 @@
 package com.xujiaji.oneforallapk;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTvQQId;
     private TextView mTvWxId;
     private TextView mTvLibraryText;
+    private TextView mTvSharedUserIdTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mTvWxId = findViewById(R.id.tvWxId);
 
         mTvLibraryText = findViewById(R.id.tvLibraryText);
+        mTvSharedUserIdTest = findViewById(R.id.tvSharedUserIdTest);
 
         mTvVersion.setText(getString(R.string.version_) + BuildConfig.VERSION_NAME);
         mTvUseJava.setText(getString(R.string.use_java) + Config.CONFIG);
@@ -48,5 +53,38 @@ public class MainActivity extends AppCompatActivity {
         mTvWxId.setText(getString(R.string.wx_id) + BuildConfig.WX_ID);
 
         mTvLibraryText.setText(getString(R.string.url_text_change) + com.xujiaji.library.BuildConfig.LIBRARY_URL);
+
+
+        // 测试sharedUserId变更
+        PreferenceManager
+                .getDefaultSharedPreferences(this)
+                .edit()
+                .putString("app_pkg", BuildConfig.APPLICATION_ID)
+                .commit(); // 将当前的包名保存到SharedPreferences
+
+        // 如果是TwoApk，那么不参与
+        if ("com.xujiaji.oneforallapk_three".equals(BuildConfig.APPLICATION_ID)) {
+            mTvSharedUserIdTest.setText(getString(R.string.shareduserid_info) + "ThreeApk是被测试对象，请打开其他进行观看该项。FourApk可与之匹配");
+            return;
+        }
+
+        try {
+            // 获取TwoApk中保存的包名
+            Context otherApkContext = createPackageContext("com.xujiaji.oneforallapk_three",
+                    Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
+
+            String str = PreferenceManager.getDefaultSharedPreferences(otherApkContext).getString("app_pkg", null);
+
+            if (str == null) {
+                mTvSharedUserIdTest.setText(getString(R.string.shareduserid_info) + "ThreeApk sharedUserId 不匹配");
+            } else  {
+                mTvSharedUserIdTest.setText(getString(R.string.shareduserid_info)
+                        + "匹配成功-"
+                        + str);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            mTvSharedUserIdTest.setText(getString(R.string.shareduserid_info) + "ThreeApk sharedUserId 不匹配");
+        }
     }
 }

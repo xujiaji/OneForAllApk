@@ -75,6 +75,18 @@ android {
             buildConfigField "String", "WX_ID", '"three--abcdefghijklmnopqrst"' // 微信 appId
             buildConfigField "String", "LOGOURL", '"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3117066670,3759738700&fm=27&gp=0.jpg"'
         }
+
+        fourApk {
+            applicationId "com.xujiaji.oneforallapk_four"
+            versionCode 3
+            versionName "1.0.3"
+            signingConfig signingConfigs.threeRelease
+
+            String qq_id = '"four123456789"'
+            buildConfigField "String", "QQ_ID", qq_id // qq appId
+            buildConfigField "String", "WX_ID", '"four--abcdefghijklmnopqrst"' // 微信 appId
+            buildConfigField "String", "LOGOURL", '"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3117066670,3759738700&fm=27&gp=0.jpg"'
+        }
     }
 
     applicationVariants.all {
@@ -90,6 +102,9 @@ android {
                         break
                     case "threeApk":
                         chineseName = "第三个APK"
+                        break
+                    case "fourApk":
+                        chineseName = "第四个APK"
                         break
                 }
                 outputFileName = "${chineseName}-${variant.productFlavors[0].name}-v${variant.productFlavors[0].versionName}-${releaseTime()}.apk"
