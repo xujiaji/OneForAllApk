@@ -3,7 +3,10 @@
 
 该项目为该文章Demo
 
-> [微信包名问题请参照这里](https://github.com/xujiaji/OneForAllApk/issues/1#issuecomment-440520289)
+> 其他的一些问题整理
+
+1. [微信包名问题请参照这里](https://github.com/xujiaji/OneForAllApk/issues/1#issuecomment-440520289)
+2. [sharedUserId变更配置](https://github.com/xujiaji/OneForAllApk/issues/4#issuecomment-444491414)
 
 ## 运行时选择渠道
 <img  src="https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/blog/one-for-more/20181113182242.png" width="22%" height="auto">
