@@ -143,5 +143,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
-    implementation project(path: ':library')
+    oneApkImplementation project(path: ':library')
+    twoApkImplementation project(path: ':library')
+    threeApkImplementation project(path: ':library-test-implementation')
 }

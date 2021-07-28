@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.xujiaji.library.LibraryImplementationTest;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTvQQId;
     private TextView mTvWxId;
     private TextView mTvLibraryText;
+    private TextView mTvFlavorMapLibrary;
     private TextView mTvSharedUserIdTest;
 
     @Override
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mTvQQId = findViewById(R.id.tvQQId);
         mTvWxId = findViewById(R.id.tvWxId);
 
+        mTvFlavorMapLibrary = findViewById(R.id.tvFlavorMapLibrary);
         mTvLibraryText = findViewById(R.id.tvLibraryText);
         mTvSharedUserIdTest = findViewById(R.id.tvSharedUserIdTest);
 
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         mTvWxId.setText(getString(R.string.wx_id) + BuildConfig.WX_ID);
 
         mTvLibraryText.setText(getString(R.string.url_text_change) + com.xujiaji.library.BuildConfig.LIBRARY_URL);
+
+        mTvFlavorMapLibrary.setText(getString(R.string.flavor_map_library) + LibraryImplementationTest.getMyName());
 
 
         // 测试sharedUserId变更

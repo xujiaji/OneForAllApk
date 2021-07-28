@@ -1,4 +1,4 @@
-# 一个项目如何编译多个不同签名、包名、资源等，的apk？
+# 一个项目如何编译多个不同签名、包名、资源、依赖等，的apk？
 文章地址：[https://blog.xujiaji.com/post/android-project-one-for-more](https://blog.xujiaji.com/post/android-project-one-for-more)
 
 该项目为该文章Demo
@@ -24,6 +24,7 @@
 - 不同的网络资源
 - 不同的主题颜色
 - 不同的第三方key
+- 不同的依赖类库
 - 等等
 
 <div >
