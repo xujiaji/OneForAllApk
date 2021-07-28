@@ -146,4 +146,5 @@ dependencies {
     oneApkImplementation project(path: ':library')
     twoApkImplementation project(path: ':library')
     threeApkImplementation project(path: ':library-test-implementation')
+    fourApkImplementation project(path: ':library-test-implementation')
 }

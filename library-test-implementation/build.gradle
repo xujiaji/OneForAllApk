@@ -27,6 +27,10 @@ android {
         threeApk {
             buildConfigField "String", "LIBRARY_URL", '"www.tencent.com"'
         }
+
+        fourApk {
+            buildConfigField "String", "LIBRARY_URL", '"www.sina.com"'
+        }
     }
 
     buildTypes {
